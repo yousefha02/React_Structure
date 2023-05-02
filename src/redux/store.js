@@ -1,5 +1,6 @@
 import { configureStore , combineReducers} from '@reduxjs/toolkit'
 import languageRreducer from './languageSlice';
+import userReducer from './user'
 
 import {
     persistStore,
@@ -19,8 +20,15 @@ import {
     storage,
   }
 
+  const persistConfig2 = {
+    key: 'root2',
+    version: 1,
+    storage,
+  }
+
   const rootReducer=combineReducers({
-    admin:persistReducer(persistConfig, languageRreducer),
+    lang:persistReducer(persistConfig, languageRreducer),
+    user:persistReducer(persistConfig2, userReducer)
   })
 
 export const store = configureStore({
